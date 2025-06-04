@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de Visite - Verso | ElecConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .business-card {
+            width: 85mm;
+            height: 55mm;
+            margin-bottom: 30px;
+        }
+        
+        .card-back {
+            width: 100%;
+            height: 100%;
+            background: white;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .back-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+        }
+        
+        .qr-code {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 10px;
+            border: 1px solid #eee;
+        }
+        
+        .back-title {
+            font-size: 10px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .partner-logos img {
+            height: 18px;
+            width: auto;
+            opacity: 0.9;
+        }
+        
+        .capture-btn {
+            background: linear-gradient(135deg, #0066cc, #004080);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="business-card">
+        <div class="card-back">
+            <div class="back-content">
+                <img src="assets/img/qrcode.jpg" alt="QR Code" class="qr-code">
+                <div class="back-title">https://elec-connect.github.io</div>
+                <div class="partner-logos">
+                    <img src="assets/img/schneider-logo.png" alt="Schneider Electric">
+                    <img src="assets/img/sonoff-logo.png" alt="Sonoff">
+                    <img src="assets/img/knx-logo.png" alt="KNX">
+                    <img src="assets/img/somfy-logo.png" alt="Somfy">
+                    <img src="assets/img/google-assistant.png" alt="Google Assistant">
+                    <img src="assets/img/google-home-badge.png" alt="Google Home">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="capture-btn" id="captureBackBtn">
+        <i class="fas fa-camera"></i> Télécharger Verso
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.getElementById('captureBackBtn').addEventListener('click', () => {
+            html2canvas(document.querySelector('.business-card'), {
+                scale: 3,
+                backgroundColor: '#f5f7fa'
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Carte_ElecConnect_Verso.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>
